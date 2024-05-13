@@ -1,1 +1,5 @@
 .idea
+.env
+docker-compose.local.yml
+main
+test.go

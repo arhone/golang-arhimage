@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+    aimger:
+        env_file: .env
+        image: ${IMAGE_NAME}
+        container_name: ${CONTAINER_NAME}
+        build:
+            context: .
+            dockerfile: docker/debian.dockerfile
+            args:
+                - TIME_ZONE=${TIME_ZONE}
+                - USER_NAME=${CONTAINER_USER_NAME}
+                - USER_ID=${CONTAINER_USER_ID}
+                - GROUP_ID=${CONTAINER_GROUP_ID}
+        ports:
+            - mode: ingress
+              host_ip: ${HOST_IP} # 0.0.0.0 если надо открыть порт для всех, 127.0.0.1 если только для host машины
+              protocol: tcp
+              target: ${CONTAINER_PORT}
+              published: ${HOST_PORT}
+#        extra_hosts:
+#            - "host.docker.internal:host-gateway"
+        deploy:
+            resources:
+                limits:
+                    cpus: ${DOCKER_LIMIT_CPUS}
+                    memory: ${DOCKER_LIMIT_MEMORY}
+                reservations:
+                    cpus: ${DOCKER_RESERVATION_CPUS}
+                    memory: ${DOCKER_RESERVATION_MEMORY}
+            restart_policy:
+                condition: any
+        restart: unless-stopped
