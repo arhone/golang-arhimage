@@ -1,4 +1,3 @@
-version: "3.9"
 services:
     aimger:
         env_file: .env
@@ -18,8 +17,17 @@ services:
               protocol: tcp
               target: ${CONTAINER_PORT}
               published: ${HOST_PORT}
-#        extra_hosts:
-#            - "host.docker.internal:host-gateway"
+        extra_hosts:
+            -   ${EXTRA_HOST_0:-host_0:127.0.0.1}
+            -   ${EXTRA_HOST_1:-host_1:127.0.0.1}
+            -   ${EXTRA_HOST_2:-host_2:127.0.0.1}
+            -   ${EXTRA_HOST_3:-host_3:127.0.0.1}
+            -   ${EXTRA_HOST_4:-host_4:127.0.0.1}
+            -   ${EXTRA_HOST_5:-host_5:127.0.0.1}
+            -   ${EXTRA_HOST_6:-host_6:127.0.0.1}
+            -   ${EXTRA_HOST_7:-host_7:127.0.0.1}
+            -   ${EXTRA_HOST_8:-host_8:127.0.0.1}
+            -   ${EXTRA_HOST_9:-host_9:127.0.0.1}
         deploy:
             resources:
                 limits:

@@ -8,7 +8,7 @@ RUN set -x \
     && apt-get -y update  \
     && apt-get install -y --no-install-recommends apt-utils \
     && apt-get -y upgrade \
-    && apt-get -y install bash tzdata htop nano locales \
+    && apt-get -y install bash tzdata wget htop nano locales \
     && sed -i '/ru_RU.UTF-8/s/^# //g' /etc/locale.gen && locale-gen \
     && cp /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime \
     && echo ${TIME_ZONE} > /etc/timezone
