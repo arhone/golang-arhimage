@@ -3,3 +3,4 @@
 docker-compose.local.yml
 main
 test.go
+/logs/
